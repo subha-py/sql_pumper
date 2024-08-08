@@ -143,15 +143,15 @@ def pump_data(conn, database_name, target_size, max_threads=128, batch_size=5000
             # todo: handle here sequentially for error batches
 
 if __name__ == '__main__':
-    SERVER = '10.14.69.135'
-    DATABASE = 'single7'
+    SERVER = '10.14.72.134'
+    DATABASE = 'sb'
     USERNAME = 'sa'
     PASSWORD = 'cohesity'
     serverspec = '{0},{1}'.format(
         SERVER,
-        sqlserverport.lookup(SERVER, 'SYSTEST'))
-    connectionString = f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={SERVER}\SYSTEST;DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD};Encrypt=no'
+        sqlserverport.lookup(SERVER, 'DMSQL_INST1'))
+    connectionString = f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={SERVER}\DMSQL_INST1;DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD};Encrypt=no'
 
     # Create a connection object.
     conn = ceODBC.connect(connectionString)
-    pump_data(conn, DATABASE, '5G')
+    pump_data(conn, DATABASE, '1G')
